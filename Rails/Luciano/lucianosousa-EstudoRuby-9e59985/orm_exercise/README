@@ -1,0 +1,10 @@
+Testes Unitarios com o TestUnit
+bash-3.1$ rake test:units
+(in /home/luciano/EstudoRuby/orm_exercise)
+/usr/local/bin/ruby -I"lib:test" "/usr/local/lib/ruby/gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader.rb" "test/unit/recurso_test.rb" "test/unit/projeto_test.rb" "test/unit/bolsista_test.rb" "test/unit/avaliacao_test.rb" "test/unit/helpers/assessores_helper_test.rb" "test/unit/helpers/alunos_helper_test.rb" "test/unit/helpers/recursos_helper_test.rb" "test/unit/helpers/projetos_helper_test.rb" "test/unit/helpers/avaliacoes_helper_test.rb" "test/unit/helpers/bolsistas_helper_test.rb" "test/unit/assessor_test.rb" "test/unit/aluno_test.rb" 
+Loaded suite /usr/local/lib/ruby/gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader
+Started
+......
+Finished in 0.196294 seconds.
+
+6 tests, 6 assertions, 0 failures, 0 errors

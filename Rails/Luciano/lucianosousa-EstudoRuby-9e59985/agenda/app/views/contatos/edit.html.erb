@@ -1,0 +1,24 @@
+<h1>Editing contato</h1>
+
+<% form_for(@contato) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :nome %><br />
+    <%= f.text_field :nome %>
+  </p>
+  <p>
+    <%= f.label :data_de_nascimento %><br />
+    <%= f.date_select :data_de_nascimento %>
+  </p>
+  <p>
+    <%= f.label :telefone %><br />
+    <%= f.text_field :telefone %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @contato %> |
+<%= link_to 'Back', contatos_path %>

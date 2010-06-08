@@ -1,0 +1,1675 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: ActiveRecord::ConnectionAdapters::PostgreSQLAdapter</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">ActiveRecord::ConnectionAdapters::PostgreSQLAdapter</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../../files/vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter_rb.html">
+                vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="AbstractAdapter.html">
+                AbstractAdapter
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+    <div id="description">
+      <p>
+The PostgreSQL adapter works both with the native C (<a
+href="http://ruby.scripting.ca/postgres">ruby.scripting.ca/postgres</a>/)
+and the pure Ruby (available both as gem and from <a
+href="http://rubyforge.org/frs/?group_id=234&release_id=1944">rubyforge.org/frs/?group_id=234&release_id=1944</a>)
+drivers.
+</p>
+<p>
+Options:
+</p>
+<ul>
+<li><tt>:host</tt> - Defaults to &quot;localhost&quot;.
+
+</li>
+<li><tt>:port</tt> - Defaults to 5432.
+
+</li>
+<li><tt>:username</tt> - Defaults to nothing.
+
+</li>
+<li><tt>:password</tt> - Defaults to nothing.
+
+</li>
+<li><tt>:database</tt> - The name of the database. No default, must be
+provided.
+
+</li>
+<li><tt>:<a href="PostgreSQLAdapter.html#M001815">schema_search_path</a></tt> -
+An optional schema search path for the connection given as a string of
+comma-separated schema names. This is backward-compatible with the
+<tt>:schema_order</tt> option.
+
+</li>
+<li><tt>:<a href="PostgreSQLAdapter.html#M001813">encoding</a></tt> - An
+optional client <a href="PostgreSQLAdapter.html#M001813">encoding</a> that
+is used in a <tt>SET client_encoding TO &lt;<a
+href="PostgreSQLAdapter.html#M001813">encoding</a>&gt;</tt> call on the
+connection.
+
+</li>
+<li><tt>:min_messages</tt> - An optional client min messages that is used in a
+<tt>SET <a href="PostgreSQLAdapter.html#M001816">client_min_messages</a> TO
+&lt;min_messages&gt;</tt> call on the connection.
+
+</li>
+<li><tt>:allow_concurrency</tt> - If true, use async query methods so Ruby
+threads don&#8216;t deadlock; otherwise, use blocking query methods.
+
+</li>
+</ul>
+
+    </div>
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M001785">active?</a>&nbsp;&nbsp;
+      <a href="#M001783">adapter_name</a>&nbsp;&nbsp;
+      <a href="#M001820">add_column</a>&nbsp;&nbsp;
+      <a href="#M001801">begin_db_transaction</a>&nbsp;&nbsp;
+      <a href="#M001821">change_column</a>&nbsp;&nbsp;
+      <a href="#M001822">change_column_default</a>&nbsp;&nbsp;
+      <a href="#M001823">change_column_null</a>&nbsp;&nbsp;
+      <a href="#M001816">client_min_messages</a>&nbsp;&nbsp;
+      <a href="#M001817">client_min_messages=</a>&nbsp;&nbsp;
+      <a href="#M001811">columns</a>&nbsp;&nbsp;
+      <a href="#M001802">commit_db_transaction</a>&nbsp;&nbsp;
+      <a href="#M001808">create_database</a>&nbsp;&nbsp;
+      <a href="#M001805">create_savepoint</a>&nbsp;&nbsp;
+      <a href="#M001812">current_database</a>&nbsp;&nbsp;
+      <a href="#M001787">disconnect!</a>&nbsp;&nbsp;
+      <a href="#M001813">encoding</a>&nbsp;&nbsp;
+      <a href="#M001794">escape_bytea</a>&nbsp;&nbsp;
+      <a href="#M001799">execute</a>&nbsp;&nbsp;
+      <a href="#M001810">indexes</a>&nbsp;&nbsp;
+      <a href="#M001798">insert</a>&nbsp;&nbsp;
+      <a href="#M001784">new</a>&nbsp;&nbsp;
+      <a href="#M001804">outside_transaction?</a>&nbsp;&nbsp;
+      <a href="#M001827">postgresql_version</a>&nbsp;&nbsp;
+      <a href="#M001818">primary_key</a>&nbsp;&nbsp;
+      <a href="#M001796">quote_table_name</a>&nbsp;&nbsp;
+      <a href="#M001786">reconnect!</a>&nbsp;&nbsp;
+      <a href="#M001807">release_savepoint</a>&nbsp;&nbsp;
+      <a href="#M001825">remove_index</a>&nbsp;&nbsp;
+      <a href="#M001824">rename_column</a>&nbsp;&nbsp;
+      <a href="#M001819">rename_table</a>&nbsp;&nbsp;
+      <a href="#M001803">rollback_db_transaction</a>&nbsp;&nbsp;
+      <a href="#M001806">rollback_to_savepoint</a>&nbsp;&nbsp;
+      <a href="#M001815">schema_search_path</a>&nbsp;&nbsp;
+      <a href="#M001814">schema_search_path=</a>&nbsp;&nbsp;
+      <a href="#M001797">select_rows</a>&nbsp;&nbsp;
+      <a href="#M001791">supports_ddl_transactions?</a>&nbsp;&nbsp;
+      <a href="#M001790">supports_insert_with_returning?</a>&nbsp;&nbsp;
+      <a href="#M001788">supports_migrations?</a>&nbsp;&nbsp;
+      <a href="#M001792">supports_savepoints?</a>&nbsp;&nbsp;
+      <a href="#M001789">supports_standard_conforming_strings?</a>&nbsp;&nbsp;
+      <a href="#M001793">table_alias_length</a>&nbsp;&nbsp;
+      <a href="#M001809">tables</a>&nbsp;&nbsp;
+      <a href="#M001826">type_to_sql</a>&nbsp;&nbsp;
+      <a href="#M001795">unescape_bytea</a>&nbsp;&nbsp;
+      <a href="#M001800">update_sql</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+
+    <div id="section">
+
+
+    <div id="constants-list">
+      <h3 class="section-bar">Constants</h3>
+
+      <div class="name-list">
+        <table summary="Constants">
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">ADAPTER_NAME</td>
+          <td>=</td>
+          <td class="context-item-value">'PostgreSQL'.freeze</td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">NATIVE_DATABASE_TYPES</td>
+          <td>=</td>
+          <td class="context-item-value">{         :primary_key =&gt; &quot;serial primary key&quot;.freeze,         :string      =&gt; { :name =&gt; &quot;character varying&quot;, :limit =&gt; 255 },         :text        =&gt; { :name =&gt; &quot;text&quot; },         :integer     =&gt; { :name =&gt; &quot;integer&quot; },         :float       =&gt; { :name =&gt; &quot;float&quot; },         :decimal     =&gt; { :name =&gt; &quot;decimal&quot; },         :datetime    =&gt; { :name =&gt; &quot;timestamp&quot; },         :timestamp   =&gt; { :name =&gt; &quot;timestamp&quot; },         :time        =&gt; { :name =&gt; &quot;time&quot; },         :date        =&gt; { :name =&gt; &quot;date&quot; },         :binary      =&gt; { :name =&gt; &quot;bytea&quot; },         :boolean     =&gt; { :name =&gt; &quot;boolean&quot; },         :xml         =&gt; { :name =&gt; &quot;xml&quot; }</td>
+        </tr>
+        </table>
+      </div>
+    </div>
+
+
+
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M001784" class="method-detail">
+        <a name="M001784"></a>
+
+        <div class="method-heading">
+          <a href="#M001784" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">(connection, logger, connection_parameters, config)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Initializes and connects a PostgreSQL adapter.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001784-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001784-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 213</span>
+213:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">connection</span>, <span class="ruby-identifier">logger</span>, <span class="ruby-identifier">connection_parameters</span>, <span class="ruby-identifier">config</span>)
+214:         <span class="ruby-keyword kw">super</span>(<span class="ruby-identifier">connection</span>, <span class="ruby-identifier">logger</span>)
+215:         <span class="ruby-ivar">@connection_parameters</span>, <span class="ruby-ivar">@config</span> = <span class="ruby-identifier">connection_parameters</span>, <span class="ruby-identifier">config</span>
+216: 
+217:         <span class="ruby-identifier">connect</span>
+218:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M001785" class="method-detail">
+        <a name="M001785"></a>
+
+        <div class="method-heading">
+          <a href="#M001785" class="method-signature">
+          <span class="method-name">active?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Is this connection alive and ready for queries?
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001785-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001785-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 221</span>
+221:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">active?</span>
+222:         <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:status</span>)
+223:           <span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">status</span> <span class="ruby-operator">==</span> <span class="ruby-constant">PGconn</span><span class="ruby-operator">::</span><span class="ruby-constant">CONNECTION_OK</span>
+224:         <span class="ruby-keyword kw">else</span>
+225:           <span class="ruby-comment cmt"># We're asking the driver, not ActiveRecord, so use @connection.query instead of #query</span>
+226:           <span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">query</span> <span class="ruby-value str">'SELECT 1'</span>
+227:           <span class="ruby-keyword kw">true</span>
+228:         <span class="ruby-keyword kw">end</span>
+229:       <span class="ruby-comment cmt"># postgres-pr raises a NoMethodError when querying if no connection is available.</span>
+230:       <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">PGError</span>, <span class="ruby-constant">NoMethodError</span>
+231:         <span class="ruby-keyword kw">false</span>
+232:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001783" class="method-detail">
+        <a name="M001783"></a>
+
+        <div class="method-heading">
+          <a href="#M001783" class="method-signature">
+          <span class="method-name">adapter_name</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns &#8216;PostgreSQL&#8217; as adapter name for identification
+purposes.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001783-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001783-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 208</span>
+208:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">adapter_name</span>
+209:         <span class="ruby-constant">ADAPTER_NAME</span>
+210:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001820" class="method-detail">
+        <a name="M001820"></a>
+
+        <div class="method-heading">
+          <a href="#M001820" class="method-signature">
+          <span class="method-name">add_column</span><span class="method-args">(table_name, column_name, type, options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Adds a <a href="PostgreSQLAdapter.html#M001784">new</a> column to the named
+table. See <a
+href="TableDefinition.html#M001713">TableDefinition#column</a> for details
+of the options you can use.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001820-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001820-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 845</span>
+845:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">add_column</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">column_name</span>, <span class="ruby-identifier">type</span>, <span class="ruby-identifier">options</span> = {})
+846:         <span class="ruby-identifier">default</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:default</span>]
+847:         <span class="ruby-identifier">notnull</span> = <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:null</span>] <span class="ruby-operator">==</span> <span class="ruby-keyword kw">false</span>
+848: 
+849:         <span class="ruby-comment cmt"># Add the column.</span>
+850:         <span class="ruby-identifier">execute</span>(<span class="ruby-node">&quot;ALTER TABLE #{quote_table_name(table_name)} ADD COLUMN #{quote_column_name(column_name)} #{type_to_sql(type, options[:limit], options[:precision], options[:scale])}&quot;</span>)
+851: 
+852:         <span class="ruby-identifier">change_column_default</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">column_name</span>, <span class="ruby-identifier">default</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options_include_default?</span>(<span class="ruby-identifier">options</span>)
+853:         <span class="ruby-identifier">change_column_null</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">column_name</span>, <span class="ruby-keyword kw">false</span>, <span class="ruby-identifier">default</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">notnull</span>
+854:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001801" class="method-detail">
+        <a name="M001801"></a>
+
+        <div class="method-heading">
+          <a href="#M001801" class="method-signature">
+          <span class="method-name">begin_db_transaction</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Begins a transaction.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001801-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001801-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 565</span>
+565:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">begin_db_transaction</span>
+566:         <span class="ruby-identifier">execute</span> <span class="ruby-value str">&quot;BEGIN&quot;</span>
+567:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001821" class="method-detail">
+        <a name="M001821"></a>
+
+        <div class="method-heading">
+          <a href="#M001821" class="method-signature">
+          <span class="method-name">change_column</span><span class="method-args">(table_name, column_name, type, options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Changes the column of a table.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001821-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001821-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 857</span>
+857:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">change_column</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">column_name</span>, <span class="ruby-identifier">type</span>, <span class="ruby-identifier">options</span> = {})
+858:         <span class="ruby-identifier">quoted_table_name</span> = <span class="ruby-identifier">quote_table_name</span>(<span class="ruby-identifier">table_name</span>)
+859: 
+860:         <span class="ruby-keyword kw">begin</span>
+861:           <span class="ruby-identifier">execute</span> <span class="ruby-node">&quot;ALTER TABLE #{quoted_table_name} ALTER COLUMN #{quote_column_name(column_name)} TYPE #{type_to_sql(type, options[:limit], options[:precision], options[:scale])}&quot;</span>
+862:         <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">ActiveRecord</span><span class="ruby-operator">::</span><span class="ruby-constant">StatementInvalid</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+863:           <span class="ruby-identifier">raise</span> <span class="ruby-identifier">e</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">postgresql_version</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">80000</span>
+864:           <span class="ruby-comment cmt"># This is PostgreSQL 7.x, so we have to use a more arcane way of doing it.</span>
+865:           <span class="ruby-keyword kw">begin</span>
+866:             <span class="ruby-identifier">begin_db_transaction</span>
+867:             <span class="ruby-identifier">tmp_column_name</span> = <span class="ruby-node">&quot;#{column_name}_ar_tmp&quot;</span>
+868:             <span class="ruby-identifier">add_column</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">tmp_column_name</span>, <span class="ruby-identifier">type</span>, <span class="ruby-identifier">options</span>)
+869:             <span class="ruby-identifier">execute</span> <span class="ruby-node">&quot;UPDATE #{quoted_table_name} SET #{quote_column_name(tmp_column_name)} = CAST(#{quote_column_name(column_name)} AS #{type_to_sql(type, options[:limit], options[:precision], options[:scale])})&quot;</span>
+870:             <span class="ruby-identifier">remove_column</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">column_name</span>)
+871:             <span class="ruby-identifier">rename_column</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">tmp_column_name</span>, <span class="ruby-identifier">column_name</span>)
+872:             <span class="ruby-identifier">commit_db_transaction</span>
+873:           <span class="ruby-keyword kw">rescue</span>
+874:             <span class="ruby-identifier">rollback_db_transaction</span>
+875:           <span class="ruby-keyword kw">end</span>
+876:         <span class="ruby-keyword kw">end</span>
+877: 
+878:         <span class="ruby-identifier">change_column_default</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">column_name</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:default</span>]) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options_include_default?</span>(<span class="ruby-identifier">options</span>)
+879:         <span class="ruby-identifier">change_column_null</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">column_name</span>, <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:null</span>], <span class="ruby-identifier">options</span>[<span class="ruby-identifier">:default</span>]) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">options</span>.<span class="ruby-identifier">key?</span>(<span class="ruby-identifier">:null</span>)
+880:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001822" class="method-detail">
+        <a name="M001822"></a>
+
+        <div class="method-heading">
+          <a href="#M001822" class="method-signature">
+          <span class="method-name">change_column_default</span><span class="method-args">(table_name, column_name, default)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Changes the default value of a table column.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001822-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001822-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 883</span>
+883:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">change_column_default</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">column_name</span>, <span class="ruby-identifier">default</span>)
+884:         <span class="ruby-identifier">execute</span> <span class="ruby-node">&quot;ALTER TABLE #{quote_table_name(table_name)} ALTER COLUMN #{quote_column_name(column_name)} SET DEFAULT #{quote(default)}&quot;</span>
+885:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001823" class="method-detail">
+        <a name="M001823"></a>
+
+        <div class="method-heading">
+          <a href="#M001823" class="method-signature">
+          <span class="method-name">change_column_null</span><span class="method-args">(table_name, column_name, null, default = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001823-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001823-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 887</span>
+887:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">change_column_null</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">column_name</span>, <span class="ruby-identifier">null</span>, <span class="ruby-identifier">default</span> = <span class="ruby-keyword kw">nil</span>)
+888:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">null</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">default</span>.<span class="ruby-identifier">nil?</span>
+889:           <span class="ruby-identifier">execute</span>(<span class="ruby-node">&quot;UPDATE #{quote_table_name(table_name)} SET #{quote_column_name(column_name)}=#{quote(default)} WHERE #{quote_column_name(column_name)} IS NULL&quot;</span>)
+890:         <span class="ruby-keyword kw">end</span>
+891:         <span class="ruby-identifier">execute</span>(<span class="ruby-node">&quot;ALTER TABLE #{quote_table_name(table_name)} ALTER #{quote_column_name(column_name)} #{null ? 'DROP' : 'SET'} NOT NULL&quot;</span>)
+892:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001816" class="method-detail">
+        <a name="M001816"></a>
+
+        <div class="method-heading">
+          <a href="#M001816" class="method-signature">
+          <span class="method-name">client_min_messages</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the current client message level.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001816-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001816-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 745</span>
+745:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">client_min_messages</span>
+746:         <span class="ruby-identifier">query</span>(<span class="ruby-value str">'SHOW client_min_messages'</span>)[<span class="ruby-value">0</span>][<span class="ruby-value">0</span>]
+747:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001817" class="method-detail">
+        <a name="M001817"></a>
+
+        <div class="method-heading">
+          <a href="#M001817" class="method-signature">
+          <span class="method-name">client_min_messages=</span><span class="method-args">(level)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Set the client message level.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001817-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001817-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 750</span>
+750:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">client_min_messages=</span>(<span class="ruby-identifier">level</span>)
+751:         <span class="ruby-identifier">execute</span>(<span class="ruby-node">&quot;SET client_min_messages TO '#{level}'&quot;</span>)
+752:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001811" class="method-detail">
+        <a name="M001811"></a>
+
+        <div class="method-heading">
+          <a href="#M001811" class="method-signature">
+          <span class="method-name">columns</span><span class="method-args">(table_name, name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the list of all column definitions for a table.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001811-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001811-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 706</span>
+706:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">columns</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">name</span> = <span class="ruby-keyword kw">nil</span>)
+707:         <span class="ruby-comment cmt"># Limit, precision, and scale are all handled by the superclass.</span>
+708:         <span class="ruby-identifier">column_definitions</span>(<span class="ruby-identifier">table_name</span>).<span class="ruby-identifier">collect</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">name</span>, <span class="ruby-identifier">type</span>, <span class="ruby-identifier">default</span>, <span class="ruby-identifier">notnull</span><span class="ruby-operator">|</span>
+709:           <span class="ruby-constant">PostgreSQLColumn</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">default</span>, <span class="ruby-identifier">type</span>, <span class="ruby-identifier">notnull</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'f'</span>)
+710:         <span class="ruby-keyword kw">end</span>
+711:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001802" class="method-detail">
+        <a name="M001802"></a>
+
+        <div class="method-heading">
+          <a href="#M001802" class="method-signature">
+          <span class="method-name">commit_db_transaction</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Commits a transaction.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001802-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001802-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 570</span>
+570:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">commit_db_transaction</span>
+571:         <span class="ruby-identifier">execute</span> <span class="ruby-value str">&quot;COMMIT&quot;</span>
+572:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001808" class="method-detail">
+        <a name="M001808"></a>
+
+        <div class="method-heading">
+          <a href="#M001808" class="method-signature">
+          <span class="method-name">create_database</span><span class="method-args">(name, options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Create a <a href="PostgreSQLAdapter.html#M001784">new</a> PostgreSQL
+database. Options include <tt>:owner</tt>, <tt>:template</tt>, <tt>:<a
+href="PostgreSQLAdapter.html#M001813">encoding</a></tt>,
+<tt>:tablespace</tt>, and <tt>:connection_limit</tt> (note that MySQL uses
+<tt>:charset</tt> while PostgreSQL uses <tt>:<a
+href="PostgreSQLAdapter.html#M001813">encoding</a></tt>).
+</p>
+<p>
+Example:
+</p>
+<pre>
+  create_database config[:database], config
+  create_database 'foo_development', :encoding =&gt; 'unicode'
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001808-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001808-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 613</span>
+613:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_database</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">options</span> = {})
+614:         <span class="ruby-identifier">options</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">reverse_merge</span>(<span class="ruby-identifier">:encoding</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value str">&quot;utf8&quot;</span>)
+615: 
+616:         <span class="ruby-identifier">option_string</span> = <span class="ruby-identifier">options</span>.<span class="ruby-identifier">symbolize_keys</span>.<span class="ruby-identifier">sum</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">key</span>, <span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+617:           <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">key</span>
+618:           <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:owner</span>
+619:             <span class="ruby-node">&quot; OWNER = \&quot;#{value}\&quot;&quot;</span>
+620:           <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:template</span>
+621:             <span class="ruby-node">&quot; TEMPLATE = \&quot;#{value}\&quot;&quot;</span>
+622:           <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:encoding</span>
+623:             <span class="ruby-node">&quot; ENCODING = '#{value}'&quot;</span>
+624:           <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:tablespace</span>
+625:             <span class="ruby-node">&quot; TABLESPACE = \&quot;#{value}\&quot;&quot;</span>
+626:           <span class="ruby-keyword kw">when</span> <span class="ruby-identifier">:connection_limit</span>
+627:             <span class="ruby-node">&quot; CONNECTION LIMIT = #{value}&quot;</span>
+628:           <span class="ruby-keyword kw">else</span>
+629:             <span class="ruby-value str">&quot;&quot;</span>
+630:           <span class="ruby-keyword kw">end</span>
+631:         <span class="ruby-keyword kw">end</span>
+632: 
+633:         <span class="ruby-identifier">execute</span> <span class="ruby-node">&quot;CREATE DATABASE #{quote_table_name(name)}#{option_string}&quot;</span>
+634:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001805" class="method-detail">
+        <a name="M001805"></a>
+
+        <div class="method-heading">
+          <a href="#M001805" class="method-signature">
+          <span class="method-name">create_savepoint</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001805-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001805-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 587</span>
+587:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">create_savepoint</span>
+588:         <span class="ruby-identifier">execute</span>(<span class="ruby-node">&quot;SAVEPOINT #{current_savepoint_name}&quot;</span>)
+589:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001812" class="method-detail">
+        <a name="M001812"></a>
+
+        <div class="method-heading">
+          <a href="#M001812" class="method-signature">
+          <span class="method-name">current_database</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the current database name.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001812-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001812-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 714</span>
+714:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">current_database</span>
+715:         <span class="ruby-identifier">query</span>(<span class="ruby-value str">'select current_database()'</span>)[<span class="ruby-value">0</span>][<span class="ruby-value">0</span>]
+716:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001787" class="method-detail">
+        <a name="M001787"></a>
+
+        <div class="method-heading">
+          <a href="#M001787" class="method-signature">
+          <span class="method-name">disconnect!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Close the connection.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001787-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001787-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 246</span>
+246:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">disconnect!</span>
+247:         <span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">close</span> <span class="ruby-keyword kw">rescue</span> <span class="ruby-keyword kw">nil</span>
+248:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001813" class="method-detail">
+        <a name="M001813"></a>
+
+        <div class="method-heading">
+          <a href="#M001813" class="method-signature">
+          <span class="method-name">encoding</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the current database <a
+href="PostgreSQLAdapter.html#M001813">encoding</a> format.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001813-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001813-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 719</span>
+719:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">encoding</span>
+720:         <span class="ruby-identifier">query</span>(<span class="ruby-value str">&quot;SELECT pg_encoding_to_char(pg_database.encoding) FROM pg_database\nWHERE pg_database.datname LIKE '\#{current_database}'\n&quot;</span>)[<span class="ruby-value">0</span>][<span class="ruby-value">0</span>]
+721:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001794" class="method-detail">
+        <a name="M001794"></a>
+
+        <div class="method-heading">
+          <a href="#M001794" class="method-signature">
+          <span class="method-name">escape_bytea</span><span class="method-args">(value)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Escapes binary strings for bytea input to the database.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001794-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001794-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 301</span>
+301:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">escape_bytea</span>(<span class="ruby-identifier">value</span>)
+302:         <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:escape_bytea</span>)
+303:           <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">instance_eval</span> <span class="ruby-keyword kw">do</span>
+304:             <span class="ruby-identifier">define_method</span>(<span class="ruby-identifier">:escape_bytea</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+305:               <span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">escape_bytea</span>(<span class="ruby-identifier">value</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>
+306:             <span class="ruby-keyword kw">end</span>
+307:           <span class="ruby-keyword kw">end</span>
+308:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-constant">PGconn</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:escape_bytea</span>)
+309:           <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">instance_eval</span> <span class="ruby-keyword kw">do</span>
+310:             <span class="ruby-identifier">define_method</span>(<span class="ruby-identifier">:escape_bytea</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+311:               <span class="ruby-constant">PGconn</span>.<span class="ruby-identifier">escape_bytea</span>(<span class="ruby-identifier">value</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>
+312:             <span class="ruby-keyword kw">end</span>
+313:           <span class="ruby-keyword kw">end</span>
+314:         <span class="ruby-keyword kw">else</span>
+315:           <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">instance_eval</span> <span class="ruby-keyword kw">do</span>
+316:             <span class="ruby-identifier">define_method</span>(<span class="ruby-identifier">:escape_bytea</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+317:               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>
+318:                 <span class="ruby-identifier">result</span> = <span class="ruby-value str">''</span>
+319:                 <span class="ruby-identifier">value</span>.<span class="ruby-identifier">each_byte</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">c</span><span class="ruby-operator">|</span> <span class="ruby-identifier">result</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">sprintf</span>(<span class="ruby-value str">'\\\\%03o'</span>, <span class="ruby-identifier">c</span>) }
+320:                 <span class="ruby-identifier">result</span>
+321:               <span class="ruby-keyword kw">end</span>
+322:             <span class="ruby-keyword kw">end</span>
+323:           <span class="ruby-keyword kw">end</span>
+324:         <span class="ruby-keyword kw">end</span>
+325:         <span class="ruby-identifier">escape_bytea</span>(<span class="ruby-identifier">value</span>)
+326:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001799" class="method-detail">
+        <a name="M001799"></a>
+
+        <div class="method-heading">
+          <a href="#M001799" class="method-signature">
+          <span class="method-name">execute</span><span class="method-args">(sql, name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Executes an SQL statement, returning a <a
+href="../../PGresult.html">PGresult</a> object on success or raising a
+PGError exception otherwise.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001799-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001799-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 549</span>
+549:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">execute</span>(<span class="ruby-identifier">sql</span>, <span class="ruby-identifier">name</span> = <span class="ruby-keyword kw">nil</span>)
+550:         <span class="ruby-identifier">log</span>(<span class="ruby-identifier">sql</span>, <span class="ruby-identifier">name</span>) <span class="ruby-keyword kw">do</span>
+551:           <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@async</span>
+552:             <span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">async_exec</span>(<span class="ruby-identifier">sql</span>)
+553:           <span class="ruby-keyword kw">else</span>
+554:             <span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">exec</span>(<span class="ruby-identifier">sql</span>)
+555:           <span class="ruby-keyword kw">end</span>
+556:         <span class="ruby-keyword kw">end</span>
+557:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001810" class="method-detail">
+        <a name="M001810"></a>
+
+        <div class="method-heading">
+          <a href="#M001810" class="method-signature">
+          <span class="method-name">indexes</span><span class="method-args">(table_name, name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the list of all <a
+href="PostgreSQLAdapter.html#M001810">indexes</a> for a table.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001810-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001810-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 665</span>
+665:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">indexes</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">name</span> = <span class="ruby-keyword kw">nil</span>)
+666:          <span class="ruby-identifier">schemas</span> = <span class="ruby-identifier">schema_search_path</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">/,/</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">quote</span>(<span class="ruby-identifier">p</span>) }.<span class="ruby-identifier">join</span>(<span class="ruby-value str">','</span>)
+667:          <span class="ruby-identifier">result</span> = <span class="ruby-identifier">query</span>(<span class="ruby-value str">&quot;SELECT distinct i.relname, d.indisunique, d.indkey, t.oid\nFROM pg_class t, pg_class i, pg_index d\nWHERE i.relkind = 'i'\nAND d.indexrelid = i.oid\nAND d.indisprimary = 'f'\nAND t.oid = d.indrelid\nAND t.relname = '\#{table_name}'\nAND i.relnamespace IN (SELECT oid FROM pg_namespace WHERE nspname IN (\#{schemas}) )\nORDER BY i.relname\n&quot;</span>, <span class="ruby-identifier">name</span>)
+668: 
+669: 
+670:         <span class="ruby-identifier">indexes</span> = []
+671: 
+672:         <span class="ruby-identifier">indexes</span> = <span class="ruby-identifier">result</span>.<span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span>
+673:           <span class="ruby-identifier">index_name</span> = <span class="ruby-identifier">row</span>[<span class="ruby-value">0</span>]
+674:           <span class="ruby-identifier">unique</span> = <span class="ruby-identifier">row</span>[<span class="ruby-value">1</span>] <span class="ruby-operator">==</span> <span class="ruby-value str">'t'</span>
+675:           <span class="ruby-identifier">indkey</span> = <span class="ruby-identifier">row</span>[<span class="ruby-value">2</span>].<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot; &quot;</span>)
+676:           <span class="ruby-identifier">oid</span> = <span class="ruby-identifier">row</span>[<span class="ruby-value">3</span>]
+677: 
+678:           <span class="ruby-identifier">columns</span> = <span class="ruby-identifier">query</span>(<span class="ruby-value str">&quot;SELECT a.attname, a.attnum\nFROM pg_attribute a\nWHERE a.attrelid = \#{oid}\nAND a.attnum IN (\#{indkey.join(\&quot;,\&quot;)})\n&quot;</span>, <span class="ruby-node">&quot;Columns for index #{row[0]} on #{table_name}&quot;</span>).<span class="ruby-identifier">inject</span>({}) {<span class="ruby-operator">|</span><span class="ruby-identifier">attlist</span>, <span class="ruby-identifier">r</span><span class="ruby-operator">|</span> <span class="ruby-identifier">attlist</span>[<span class="ruby-identifier">r</span>[<span class="ruby-value">1</span>]] = <span class="ruby-identifier">r</span>[<span class="ruby-value">0</span>]; <span class="ruby-identifier">attlist</span>}
+679: 
+680:           <span class="ruby-identifier">column_names</span> = <span class="ruby-identifier">indkey</span>.<span class="ruby-identifier">map</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">attnum</span><span class="ruby-operator">|</span> <span class="ruby-identifier">columns</span>[<span class="ruby-identifier">attnum</span>] }
+681:           <span class="ruby-constant">IndexDefinition</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">index_name</span>, <span class="ruby-identifier">unique</span>, <span class="ruby-identifier">column_names</span>)
+682: 
+683:         <span class="ruby-keyword kw">end</span>
+684: 
+685:         <span class="ruby-identifier">indexes</span>
+686:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001798" class="method-detail">
+        <a name="M001798"></a>
+
+        <div class="method-heading">
+          <a href="#M001798" class="method-signature">
+          <span class="method-name">insert</span><span class="method-args">(sql, name = nil, pk = nil, id_value = nil, sequence_name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Executes an INSERT query and returns the <a
+href="PostgreSQLAdapter.html#M001784">new</a> record&#8216;s ID
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001798-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001798-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 482</span>
+482:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">insert</span>(<span class="ruby-identifier">sql</span>, <span class="ruby-identifier">name</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">pk</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">id_value</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">sequence_name</span> = <span class="ruby-keyword kw">nil</span>)
+483:         <span class="ruby-comment cmt"># Extract the table from the insert sql. Yuck.</span>
+484:         <span class="ruby-identifier">table</span> = <span class="ruby-identifier">sql</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot; &quot;</span>, <span class="ruby-value">4</span>)[<span class="ruby-value">2</span>].<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">'&quot;'</span>, <span class="ruby-value str">''</span>)
+485: 
+486:         <span class="ruby-comment cmt"># Try an insert with 'returning id' if available (PG &gt;= 8.2)</span>
+487:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">supports_insert_with_returning?</span>
+488:           <span class="ruby-identifier">pk</span>, <span class="ruby-identifier">sequence_name</span> = <span class="ruby-operator">*</span><span class="ruby-identifier">pk_and_sequence_for</span>(<span class="ruby-identifier">table</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">pk</span>
+489:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pk</span>
+490:             <span class="ruby-identifier">id</span> = <span class="ruby-identifier">select_value</span>(<span class="ruby-node">&quot;#{sql} RETURNING #{quote_column_name(pk)}&quot;</span>)
+491:             <span class="ruby-identifier">clear_query_cache</span>
+492:             <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">id</span>
+493:           <span class="ruby-keyword kw">end</span>
+494:         <span class="ruby-keyword kw">end</span>
+495: 
+496:         <span class="ruby-comment cmt"># Otherwise, insert then grab last_insert_id.</span>
+497:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">insert_id</span> = <span class="ruby-keyword kw">super</span>
+498:           <span class="ruby-identifier">insert_id</span>
+499:         <span class="ruby-keyword kw">else</span>
+500:           <span class="ruby-comment cmt"># If neither pk nor sequence name is given, look them up.</span>
+501:           <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">pk</span> <span class="ruby-operator">||</span> <span class="ruby-identifier">sequence_name</span>
+502:             <span class="ruby-identifier">pk</span>, <span class="ruby-identifier">sequence_name</span> = <span class="ruby-operator">*</span><span class="ruby-identifier">pk_and_sequence_for</span>(<span class="ruby-identifier">table</span>)
+503:           <span class="ruby-keyword kw">end</span>
+504: 
+505:           <span class="ruby-comment cmt"># If a pk is given, fallback to default sequence name.</span>
+506:           <span class="ruby-comment cmt"># Don't fetch last insert id for a table without a pk.</span>
+507:           <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">pk</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">sequence_name</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">default_sequence_name</span>(<span class="ruby-identifier">table</span>, <span class="ruby-identifier">pk</span>)
+508:             <span class="ruby-identifier">last_insert_id</span>(<span class="ruby-identifier">table</span>, <span class="ruby-identifier">sequence_name</span>)
+509:           <span class="ruby-keyword kw">end</span>
+510:         <span class="ruby-keyword kw">end</span>
+511:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001804" class="method-detail">
+        <a name="M001804"></a>
+
+        <div class="method-heading">
+          <a href="#M001804" class="method-signature">
+          <span class="method-name">outside_transaction?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+The ruby-pg driver supports inspecting the transaction status, while the
+ruby-postgres driver does not.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001804-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001804-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 582</span>
+582:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">outside_transaction?</span>
+583:           <span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">transaction_status</span> <span class="ruby-operator">==</span> <span class="ruby-constant">PGconn</span><span class="ruby-operator">::</span><span class="ruby-constant">PQTRANS_IDLE</span>
+584:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001818" class="method-detail">
+        <a name="M001818"></a>
+
+        <div class="method-heading">
+          <a href="#M001818" class="method-signature">
+          <span class="method-name">primary_key</span><span class="method-args">(table)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns just a table&#8216;s primary key
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001818-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001818-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 833</span>
+833:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">primary_key</span>(<span class="ruby-identifier">table</span>)
+834:         <span class="ruby-identifier">pk_and_sequence</span> = <span class="ruby-identifier">pk_and_sequence_for</span>(<span class="ruby-identifier">table</span>)
+835:         <span class="ruby-identifier">pk_and_sequence</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">pk_and_sequence</span>.<span class="ruby-identifier">first</span>
+836:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001796" class="method-detail">
+        <a name="M001796"></a>
+
+        <div class="method-heading">
+          <a href="#M001796" class="method-signature">
+          <span class="method-name">quote_table_name</span><span class="method-args">(name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Checks the following cases:
+</p>
+<ul>
+<li>table_name
+
+</li>
+<li>&quot;table.name&quot;
+
+</li>
+<li>schema_name.table_name
+
+</li>
+<li>schema_name.&quot;table.name&quot;
+
+</li>
+<li>&quot;schema.name&quot;.table_name
+
+</li>
+<li>&quot;schema.name&quot;.&quot;table.name&quot;
+
+</li>
+</ul>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001796-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001796-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 427</span>
+427:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">quote_table_name</span>(<span class="ruby-identifier">name</span>)
+428:         <span class="ruby-identifier">schema</span>, <span class="ruby-identifier">name_part</span> = <span class="ruby-identifier">extract_pg_identifier_from_name</span>(<span class="ruby-identifier">name</span>.<span class="ruby-identifier">to_s</span>)
+429: 
+430:         <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">name_part</span>
+431:           <span class="ruby-identifier">quote_column_name</span>(<span class="ruby-identifier">schema</span>)
+432:         <span class="ruby-keyword kw">else</span>
+433:           <span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">name_part</span> = <span class="ruby-identifier">extract_pg_identifier_from_name</span>(<span class="ruby-identifier">name_part</span>)
+434:           <span class="ruby-node">&quot;#{quote_column_name(schema)}.#{quote_column_name(table_name)}&quot;</span>
+435:         <span class="ruby-keyword kw">end</span>
+436:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001786" class="method-detail">
+        <a name="M001786"></a>
+
+        <div class="method-heading">
+          <a href="#M001786" class="method-signature">
+          <span class="method-name">reconnect!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Close then reopen the connection.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001786-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001786-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 235</span>
+235:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">reconnect!</span>
+236:         <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:reset</span>)
+237:           <span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">reset</span>
+238:           <span class="ruby-identifier">configure_connection</span>
+239:         <span class="ruby-keyword kw">else</span>
+240:           <span class="ruby-identifier">disconnect!</span>
+241:           <span class="ruby-identifier">connect</span>
+242:         <span class="ruby-keyword kw">end</span>
+243:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001807" class="method-detail">
+        <a name="M001807"></a>
+
+        <div class="method-heading">
+          <a href="#M001807" class="method-signature">
+          <span class="method-name">release_savepoint</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001807-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001807-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 595</span>
+595:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">release_savepoint</span>
+596:         <span class="ruby-identifier">execute</span>(<span class="ruby-node">&quot;RELEASE SAVEPOINT #{current_savepoint_name}&quot;</span>)
+597:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001825" class="method-detail">
+        <a name="M001825"></a>
+
+        <div class="method-heading">
+          <a href="#M001825" class="method-signature">
+          <span class="method-name">remove_index</span><span class="method-args">(table_name, options = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Drops an index from a table.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001825-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001825-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 900</span>
+900:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">remove_index</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">options</span> = {})
+901:         <span class="ruby-identifier">execute</span> <span class="ruby-node">&quot;DROP INDEX #{quote_table_name(index_name(table_name, options))}&quot;</span>
+902:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001824" class="method-detail">
+        <a name="M001824"></a>
+
+        <div class="method-heading">
+          <a href="#M001824" class="method-signature">
+          <span class="method-name">rename_column</span><span class="method-args">(table_name, column_name, new_column_name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Renames a column in a table.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001824-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001824-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 895</span>
+895:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rename_column</span>(<span class="ruby-identifier">table_name</span>, <span class="ruby-identifier">column_name</span>, <span class="ruby-identifier">new_column_name</span>)
+896:         <span class="ruby-identifier">execute</span> <span class="ruby-node">&quot;ALTER TABLE #{quote_table_name(table_name)} RENAME COLUMN #{quote_column_name(column_name)} TO #{quote_column_name(new_column_name)}&quot;</span>
+897:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001819" class="method-detail">
+        <a name="M001819"></a>
+
+        <div class="method-heading">
+          <a href="#M001819" class="method-signature">
+          <span class="method-name">rename_table</span><span class="method-args">(name, new_name)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Renames a table.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001819-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001819-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 839</span>
+839:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rename_table</span>(<span class="ruby-identifier">name</span>, <span class="ruby-identifier">new_name</span>)
+840:         <span class="ruby-identifier">execute</span> <span class="ruby-node">&quot;ALTER TABLE #{quote_table_name(name)} RENAME TO #{quote_table_name(new_name)}&quot;</span>
+841:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001803" class="method-detail">
+        <a name="M001803"></a>
+
+        <div class="method-heading">
+          <a href="#M001803" class="method-signature">
+          <span class="method-name">rollback_db_transaction</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Aborts a transaction.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001803-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001803-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 575</span>
+575:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rollback_db_transaction</span>
+576:         <span class="ruby-identifier">execute</span> <span class="ruby-value str">&quot;ROLLBACK&quot;</span>
+577:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001806" class="method-detail">
+        <a name="M001806"></a>
+
+        <div class="method-heading">
+          <a href="#M001806" class="method-signature">
+          <span class="method-name">rollback_to_savepoint</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001806-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001806-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 591</span>
+591:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">rollback_to_savepoint</span>
+592:         <span class="ruby-identifier">execute</span>(<span class="ruby-node">&quot;ROLLBACK TO SAVEPOINT #{current_savepoint_name}&quot;</span>)
+593:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001815" class="method-detail">
+        <a name="M001815"></a>
+
+        <div class="method-heading">
+          <a href="#M001815" class="method-signature">
+          <span class="method-name">schema_search_path</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the active schema search path.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001815-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001815-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 740</span>
+740:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">schema_search_path</span>
+741:         <span class="ruby-ivar">@schema_search_path</span> <span class="ruby-operator">||=</span> <span class="ruby-identifier">query</span>(<span class="ruby-value str">'SHOW search_path'</span>)[<span class="ruby-value">0</span>][<span class="ruby-value">0</span>]
+742:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001814" class="method-detail">
+        <a name="M001814"></a>
+
+        <div class="method-heading">
+          <a href="#M001814" class="method-signature">
+          <span class="method-name">schema_search_path=</span><span class="method-args">(schema_csv)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Sets the schema search path to a string of comma-separated schema names.
+Names beginning with $ have to be quoted (e.g. $user =&gt;
+&#8217;$user&#8217;). See: <a
+href="http://www.postgresql.org/docs/current/static/ddl-schemas.html">www.postgresql.org/docs/current/static/ddl-schemas.html</a>
+</p>
+<p>
+This should be not be called manually but set in database.yml.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001814-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001814-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 732</span>
+732:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">schema_search_path=</span>(<span class="ruby-identifier">schema_csv</span>)
+733:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">schema_csv</span>
+734:           <span class="ruby-identifier">execute</span> <span class="ruby-node">&quot;SET search_path TO #{schema_csv}&quot;</span>
+735:           <span class="ruby-ivar">@schema_search_path</span> = <span class="ruby-identifier">schema_csv</span>
+736:         <span class="ruby-keyword kw">end</span>
+737:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001797" class="method-detail">
+        <a name="M001797"></a>
+
+        <div class="method-heading">
+          <a href="#M001797" class="method-signature">
+          <span class="method-name">select_rows</span><span class="method-args">(sql, name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Executes a SELECT query and returns an array of rows. Each row is an array
+of field values.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001797-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001797-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 477</span>
+477:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">select_rows</span>(<span class="ruby-identifier">sql</span>, <span class="ruby-identifier">name</span> = <span class="ruby-keyword kw">nil</span>)
+478:         <span class="ruby-identifier">select_raw</span>(<span class="ruby-identifier">sql</span>, <span class="ruby-identifier">name</span>).<span class="ruby-identifier">last</span>
+479:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001791" class="method-detail">
+        <a name="M001791"></a>
+
+        <div class="method-heading">
+          <a href="#M001791" class="method-signature">
+          <span class="method-name">supports_ddl_transactions?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001791-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001791-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 284</span>
+284:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">supports_ddl_transactions?</span>
+285:         <span class="ruby-keyword kw">true</span>
+286:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001790" class="method-detail">
+        <a name="M001790"></a>
+
+        <div class="method-heading">
+          <a href="#M001790" class="method-signature">
+          <span class="method-name">supports_insert_with_returning?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001790-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001790-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 280</span>
+280:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">supports_insert_with_returning?</span>
+281:         <span class="ruby-identifier">postgresql_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">80200</span>
+282:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001788" class="method-detail">
+        <a name="M001788"></a>
+
+        <div class="method-heading">
+          <a href="#M001788" class="method-signature">
+          <span class="method-name">supports_migrations?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Does PostgreSQL support migrations?
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001788-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001788-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 255</span>
+255:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">supports_migrations?</span>
+256:         <span class="ruby-keyword kw">true</span>
+257:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001792" class="method-detail">
+        <a name="M001792"></a>
+
+        <div class="method-heading">
+          <a href="#M001792" class="method-signature">
+          <span class="method-name">supports_savepoints?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001792-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001792-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 288</span>
+288:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">supports_savepoints?</span>
+289:         <span class="ruby-keyword kw">true</span>
+290:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001789" class="method-detail">
+        <a name="M001789"></a>
+
+        <div class="method-heading">
+          <a href="#M001789" class="method-signature">
+          <span class="method-name">supports_standard_conforming_strings?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Does PostgreSQL support standard conforming strings?
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001789-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001789-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 265</span>
+265:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">supports_standard_conforming_strings?</span>
+266:         <span class="ruby-comment cmt"># Temporarily set the client message level above error to prevent unintentional</span>
+267:         <span class="ruby-comment cmt"># error messages in the logs when working on a PostgreSQL database server that</span>
+268:         <span class="ruby-comment cmt"># does not support standard conforming strings.</span>
+269:         <span class="ruby-identifier">client_min_messages_old</span> = <span class="ruby-identifier">client_min_messages</span>
+270:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">client_min_messages</span> = <span class="ruby-value str">'panic'</span>
+271: 
+272:         <span class="ruby-comment cmt"># postgres-pr does not raise an exception when client_min_messages is set higher</span>
+273:         <span class="ruby-comment cmt"># than error and &quot;SHOW standard_conforming_strings&quot; fails, but returns an empty</span>
+274:         <span class="ruby-comment cmt"># PGresult instead.</span>
+275:         <span class="ruby-identifier">has_support</span> = <span class="ruby-identifier">query</span>(<span class="ruby-value str">'SHOW standard_conforming_strings'</span>)[<span class="ruby-value">0</span>][<span class="ruby-value">0</span>] <span class="ruby-keyword kw">rescue</span> <span class="ruby-keyword kw">false</span>
+276:         <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">client_min_messages</span> = <span class="ruby-identifier">client_min_messages_old</span>
+277:         <span class="ruby-identifier">has_support</span>
+278:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001793" class="method-detail">
+        <a name="M001793"></a>
+
+        <div class="method-heading">
+          <a href="#M001793" class="method-signature">
+          <span class="method-name">table_alias_length</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the configured supported identifier length supported by PostgreSQL,
+or report the default of 63 on PostgreSQL 7.x.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001793-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001793-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 294</span>
+294:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">table_alias_length</span>
+295:         <span class="ruby-ivar">@table_alias_length</span> <span class="ruby-operator">||=</span> (<span class="ruby-identifier">postgresql_version</span> <span class="ruby-operator">&gt;=</span> <span class="ruby-value">80000</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">query</span>(<span class="ruby-value str">'SHOW max_identifier_length'</span>)[<span class="ruby-value">0</span>][<span class="ruby-value">0</span>].<span class="ruby-identifier">to_i</span> <span class="ruby-operator">:</span> <span class="ruby-value">63</span>)
+296:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001809" class="method-detail">
+        <a name="M001809"></a>
+
+        <div class="method-heading">
+          <a href="#M001809" class="method-signature">
+          <span class="method-name">tables</span><span class="method-args">(name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the list of all <a href="PostgreSQLAdapter.html#M001809">tables</a>
+in the schema search path or a specified schema.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001809-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001809-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 654</span>
+654:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">tables</span>(<span class="ruby-identifier">name</span> = <span class="ruby-keyword kw">nil</span>)
+655:         <span class="ruby-identifier">schemas</span> = <span class="ruby-identifier">schema_search_path</span>.<span class="ruby-identifier">split</span>(<span class="ruby-regexp re">/,/</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">p</span><span class="ruby-operator">|</span> <span class="ruby-identifier">quote</span>(<span class="ruby-identifier">p</span>) }.<span class="ruby-identifier">join</span>(<span class="ruby-value str">','</span>)
+656:         <span class="ruby-identifier">query</span>(<span class="ruby-value str">&quot;SELECT tablename\nFROM pg_tables\nWHERE schemaname IN (\#{schemas})\n&quot;</span>, <span class="ruby-identifier">name</span>).<span class="ruby-identifier">map</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">row</span><span class="ruby-operator">|</span> <span class="ruby-identifier">row</span>[<span class="ruby-value">0</span>] }
+657:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001826" class="method-detail">
+        <a name="M001826"></a>
+
+        <div class="method-heading">
+          <a href="#M001826" class="method-signature">
+          <span class="method-name">type_to_sql</span><span class="method-args">(type, limit = nil, precision = nil, scale = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Maps logical <a href="../../Rails.html">Rails</a> types to
+PostgreSQL-specific data types.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001826-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001826-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 905</span>
+905:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">type_to_sql</span>(<span class="ruby-identifier">type</span>, <span class="ruby-identifier">limit</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">precision</span> = <span class="ruby-keyword kw">nil</span>, <span class="ruby-identifier">scale</span> = <span class="ruby-keyword kw">nil</span>)
+906:         <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">super</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">type</span>.<span class="ruby-identifier">to_s</span> <span class="ruby-operator">==</span> <span class="ruby-value str">'integer'</span>
+907: 
+908:         <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">limit</span>
+909:           <span class="ruby-keyword kw">when</span> <span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-value">2</span>;      <span class="ruby-value str">'smallint'</span>
+910:           <span class="ruby-keyword kw">when</span> <span class="ruby-value">3</span><span class="ruby-operator">..</span><span class="ruby-value">4</span>, <span class="ruby-keyword kw">nil</span>; <span class="ruby-value str">'integer'</span>
+911:           <span class="ruby-keyword kw">when</span> <span class="ruby-value">5</span><span class="ruby-operator">..</span><span class="ruby-value">8</span>;      <span class="ruby-value str">'bigint'</span>
+912:           <span class="ruby-keyword kw">else</span> <span class="ruby-identifier">raise</span>(<span class="ruby-constant">ActiveRecordError</span>, <span class="ruby-node">&quot;No integer type has byte size #{limit}. Use a numeric with precision 0 instead.&quot;</span>)
+913:         <span class="ruby-keyword kw">end</span>
+914:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001795" class="method-detail">
+        <a name="M001795"></a>
+
+        <div class="method-heading">
+          <a href="#M001795" class="method-signature">
+          <span class="method-name">unescape_bytea</span><span class="method-args">(value)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Unescapes bytea output from a database to the binary string it represents.
+NOTE: This is NOT an inverse of escape_bytea! This is only to be used
+</p>
+<pre>
+      on escaped binary output from database drive.
+</pre>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001795-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001795-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 331</span>
+331:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">unescape_bytea</span>(<span class="ruby-identifier">value</span>)
+332:         <span class="ruby-comment cmt"># In each case, check if the value actually is escaped PostgreSQL bytea output</span>
+333:         <span class="ruby-comment cmt"># or an unescaped Active Record attribute that was just written.</span>
+334:         <span class="ruby-keyword kw">if</span> <span class="ruby-constant">PGconn</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:unescape_bytea</span>)
+335:           <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">instance_eval</span> <span class="ruby-keyword kw">do</span>
+336:             <span class="ruby-identifier">define_method</span>(<span class="ruby-identifier">:unescape_bytea</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+337:               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\\\d{3}/</span>
+338:                 <span class="ruby-constant">PGconn</span>.<span class="ruby-identifier">unescape_bytea</span>(<span class="ruby-identifier">value</span>)
+339:               <span class="ruby-keyword kw">else</span>
+340:                 <span class="ruby-identifier">value</span>
+341:               <span class="ruby-keyword kw">end</span>
+342:             <span class="ruby-keyword kw">end</span>
+343:           <span class="ruby-keyword kw">end</span>
+344:         <span class="ruby-keyword kw">else</span>
+345:           <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">instance_eval</span> <span class="ruby-keyword kw">do</span>
+346:             <span class="ruby-identifier">define_method</span>(<span class="ruby-identifier">:unescape_bytea</span>) <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">value</span><span class="ruby-operator">|</span>
+347:               <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/\\\d{3}/</span>
+348:                 <span class="ruby-identifier">result</span> = <span class="ruby-value str">''</span>
+349:                 <span class="ruby-identifier">i</span>, <span class="ruby-identifier">max</span> = <span class="ruby-value">0</span>, <span class="ruby-identifier">value</span>.<span class="ruby-identifier">size</span>
+350:                 <span class="ruby-keyword kw">while</span> <span class="ruby-identifier">i</span> <span class="ruby-operator">&lt;</span> <span class="ruby-identifier">max</span>
+351:                   <span class="ruby-identifier">char</span> = <span class="ruby-identifier">value</span>[<span class="ruby-identifier">i</span>]
+352:                   <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">char</span> <span class="ruby-operator">==</span> <span class="ruby-value">?\\</span>
+353:                     <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">value</span>[<span class="ruby-identifier">i</span><span class="ruby-operator">+</span><span class="ruby-value">1</span>] <span class="ruby-operator">==</span> <span class="ruby-value">?\\</span>
+354:                       <span class="ruby-identifier">char</span> = <span class="ruby-value">?\\</span>
+355:                       <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+356:                     <span class="ruby-keyword kw">else</span>
+357:                       <span class="ruby-identifier">char</span> = <span class="ruby-identifier">value</span>[<span class="ruby-identifier">i</span><span class="ruby-operator">+</span><span class="ruby-value">1</span><span class="ruby-operator">..</span><span class="ruby-identifier">i</span><span class="ruby-operator">+</span><span class="ruby-value">3</span>].<span class="ruby-identifier">oct</span>
+358:                       <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">3</span>
+359:                     <span class="ruby-keyword kw">end</span>
+360:                   <span class="ruby-keyword kw">end</span>
+361:                   <span class="ruby-identifier">result</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">char</span>
+362:                   <span class="ruby-identifier">i</span> <span class="ruby-operator">+=</span> <span class="ruby-value">1</span>
+363:                 <span class="ruby-keyword kw">end</span>
+364:                 <span class="ruby-identifier">result</span>
+365:               <span class="ruby-keyword kw">else</span>
+366:                 <span class="ruby-identifier">value</span>
+367:               <span class="ruby-keyword kw">end</span>
+368:             <span class="ruby-keyword kw">end</span>
+369:           <span class="ruby-keyword kw">end</span>
+370:         <span class="ruby-keyword kw">end</span>
+371:         <span class="ruby-identifier">unescape_bytea</span>(<span class="ruby-identifier">value</span>)
+372:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M001800" class="method-detail">
+        <a name="M001800"></a>
+
+        <div class="method-heading">
+          <a href="#M001800" class="method-signature">
+          <span class="method-name">update_sql</span><span class="method-args">(sql, name = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Executes an UPDATE query and returns the number of affected tuples.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001800-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001800-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 560</span>
+560:       <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">update_sql</span>(<span class="ruby-identifier">sql</span>, <span class="ruby-identifier">name</span> = <span class="ruby-keyword kw">nil</span>)
+561:         <span class="ruby-keyword kw">super</span>.<span class="ruby-identifier">cmd_tuples</span>
+562:       <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Protected Instance methods</h3>
+
+      <div id="method-M001827" class="method-detail">
+        <a name="M001827"></a>
+
+        <div class="method-heading">
+          <a href="#M001827" class="method-signature">
+          <span class="method-name">postgresql_version</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Returns the version of the connected PostgreSQL version.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M001827-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M001827-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/activerecord/lib/active_record/connection_adapters/postgresql_adapter.rb, line 953</span>
+953:         <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">postgresql_version</span>
+954:           <span class="ruby-ivar">@postgresql_version</span> <span class="ruby-operator">||=</span>
+955:             <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">respond_to?</span>(<span class="ruby-identifier">:server_version</span>)
+956:               <span class="ruby-ivar">@connection</span>.<span class="ruby-identifier">server_version</span>
+957:             <span class="ruby-keyword kw">else</span>
+958:               <span class="ruby-comment cmt"># Mimic PGconn.server_version behavior</span>
+959:               <span class="ruby-keyword kw">begin</span>
+960:                 <span class="ruby-identifier">query</span>(<span class="ruby-value str">'SELECT version()'</span>)[<span class="ruby-value">0</span>][<span class="ruby-value">0</span>] <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/PostgreSQL (\d+)\.(\d+)\.(\d+)/</span>
+961:                 (<span class="ruby-identifier">$1</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">*</span> <span class="ruby-value">10000</span>) <span class="ruby-operator">+</span> (<span class="ruby-identifier">$2</span>.<span class="ruby-identifier">to_i</span> <span class="ruby-operator">*</span> <span class="ruby-value">100</span>) <span class="ruby-operator">+</span> <span class="ruby-identifier">$3</span>.<span class="ruby-identifier">to_i</span>
+962:               <span class="ruby-keyword kw">rescue</span>
+963:                 <span class="ruby-value">0</span>
+964:               <span class="ruby-keyword kw">end</span>
+965:             <span class="ruby-keyword kw">end</span>
+966:         <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>

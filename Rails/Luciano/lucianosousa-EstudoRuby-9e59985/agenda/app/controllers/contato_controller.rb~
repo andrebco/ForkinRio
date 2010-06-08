@@ -1,0 +1,12 @@
+class ContatoController < ApplicationController
+
+  @time = Time.now
+  
+  def cadastra
+    self.time
+  end
+  
+  def logout
+    self.time
+  end
+end

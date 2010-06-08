@@ -1,0 +1,16 @@
+<h1>Editing bolsista</h1>
+
+<% form_for(@bolsista) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :nome %><br />
+    <%= f.text_field :nome %>
+  </p>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @bolsista %> |
+<%= link_to 'Back', bolsistas_path %>

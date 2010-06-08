@@ -1,0 +1,20 @@
+<h1>Listing assessores</h1>
+
+<table>
+  <tr>
+    <th>Nome</th>
+  </tr>
+
+<% @assessores.each do |assessor| %>
+  <tr>
+    <td><%=h assessor.nome %></td>
+    <td><%= link_to 'Show', assessor %></td>
+    <td><%= link_to 'Edit', edit_assessor_path(assessor) %></td>
+    <td><%= link_to 'Destroy', assessor, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New assessor', new_assessor_path %>

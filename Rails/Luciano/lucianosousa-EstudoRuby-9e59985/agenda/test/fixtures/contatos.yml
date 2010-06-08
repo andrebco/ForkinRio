@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  nome: MyString
+  data_de_nascimento: 2010-05-14
+  telefone: 1.5
+
+two:
+  nome: MyString
+  data_de_nascimento: 2010-05-14
+  telefone: 1.5

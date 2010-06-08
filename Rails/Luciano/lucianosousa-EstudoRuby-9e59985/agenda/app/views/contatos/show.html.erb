@@ -1,0 +1,18 @@
+<p>
+  <b>Nome:</b>
+  <%=h @contato.nome %>
+</p>
+
+<p>
+  <b>Data de nascimento:</b>
+  <%=h @contato.data_de_nascimento %>
+</p>
+
+<p>
+  <b>Telefone:</b>
+  <%=h @contato.telefone %>
+</p>
+
+
+<%= link_to 'Edit', edit_contato_path(@contato) %> |
+<%= link_to 'Back', contatos_path %>

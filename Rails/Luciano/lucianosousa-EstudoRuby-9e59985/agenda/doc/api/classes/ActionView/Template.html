@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html 
+     PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class: ActionView::Template</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <meta http-equiv="Content-Script-Type" content="text/javascript" />
+  <link rel="stylesheet" href="../.././rdoc-style.css" type="text/css" media="screen" />
+  <script type="text/javascript">
+  // <![CDATA[
+
+  function popupCode( url ) {
+    window.open(url, "Code", "resizable=yes,scrollbars=yes,toolbar=no,status=no,height=150,width=400")
+  }
+
+  function toggleCode( id ) {
+    if ( document.getElementById )
+      elem = document.getElementById( id );
+    else if ( document.all )
+      elem = eval( "document.all." + id );
+    else
+      return false;
+
+    elemStyle = elem.style;
+    
+    if ( elemStyle.display != "block" ) {
+      elemStyle.display = "block"
+    } else {
+      elemStyle.display = "none"
+    }
+
+    return true;
+  }
+  
+  // Make codeblocks hidden by default
+  document.writeln( "<style type=\"text/css\">div.method-source-code { display: none }</style>" )
+  
+  // ]]>
+  </script>
+
+</head>
+<body>
+
+
+
+    <div id="classHeader">
+        <table class="header-table">
+        <tr class="top-aligned-row">
+          <td><strong>Class</strong></td>
+          <td class="class-name-in-header">ActionView::Template</td>
+        </tr>
+        <tr class="top-aligned-row">
+            <td><strong>In:</strong></td>
+            <td>
+                <a href="../../files/vendor/rails/actionpack/lib/action_view/template_rb.html">
+                vendor/rails/actionpack/lib/action_view/template.rb
+                </a>
+        <br />
+            </td>
+        </tr>
+
+        <tr class="top-aligned-row">
+            <td><strong>Parent:</strong></td>
+            <td>
+                <a href="../Object.html">
+                Object
+               </a>
+            </td>
+        </tr>
+        </table>
+    </div>
+  <!-- banner header -->
+
+  <div id="bodyContent">
+
+
+
+  <div id="contextContent">
+
+
+
+   </div>
+
+    <div id="method-list">
+      <h3 class="section-bar">Methods</h3>
+
+      <div class="name-list">
+      <a href="#M002534">accessible_paths</a>&nbsp;&nbsp;
+      <a href="#M002537">content_type</a>&nbsp;&nbsp;
+      <a href="#M002532">exempt_from_layout</a>&nbsp;&nbsp;
+      <a href="#M002543">exempt_from_layout?</a>&nbsp;&nbsp;
+      <a href="#M002544">filename</a>&nbsp;&nbsp;
+      <a href="#M002535">format_and_extension</a>&nbsp;&nbsp;
+      <a href="#M002548">load!</a>&nbsp;&nbsp;
+      <a href="#M002546">method_segment</a>&nbsp;&nbsp;
+      <a href="#M002538">mime_type</a>&nbsp;&nbsp;
+      <a href="#M002536">multipart?</a>&nbsp;&nbsp;
+      <a href="#M002533">new</a>&nbsp;&nbsp;
+      <a href="#M002539">path</a>&nbsp;&nbsp;
+      <a href="#M002540">path_without_extension</a>&nbsp;&nbsp;
+      <a href="#M002541">path_without_format_and_extension</a>&nbsp;&nbsp;
+      <a href="#M002542">relative_path</a>&nbsp;&nbsp;
+      <a href="#M002547">render_template</a>&nbsp;&nbsp;
+      <a href="#M002545">source</a>&nbsp;&nbsp;
+      </div>
+    </div>
+
+  </div>
+
+
+    <!-- if includes -->
+    <div id="includes">
+      <h3 class="section-bar">Included Modules</h3>
+
+      <div id="includes-list">
+        <span class="include-name">Renderable</span>
+      </div>
+    </div>
+
+    <div id="section">
+
+    <div id="class-list">
+      <h3 class="section-bar">Classes and Modules</h3>
+
+      Class <a href="Template/EagerPath.html" class="link">ActionView::Template::EagerPath</a><br />
+Class <a href="Template/Path.html" class="link">ActionView::Template::Path</a><br />
+
+    </div>
+
+
+
+
+    <div id="attribute-list">
+      <h3 class="section-bar">Attributes</h3>
+
+      <div class="name-list">
+        <table>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">base_path</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">extension</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">filename</td>
+          <td class="context-item-value">&nbsp;[W]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">format</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">load_path</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">locale</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">name</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        <tr class="top-aligned-row context-row">
+          <td class="context-item-name">template_path</td>
+          <td class="context-item-value">&nbsp;[RW]&nbsp;</td>
+          <td class="context-item-desc"></td>
+        </tr>
+        </table>
+      </div>
+    </div>
+      
+
+
+    <!-- if method_list -->
+    <div id="methods">
+      <h3 class="section-bar">Public Class methods</h3>
+
+      <div id="method-M002532" class="method-detail">
+        <a name="M002532"></a>
+
+        <div class="method-heading">
+          <a href="#M002532" class="method-signature">
+          <span class="method-name">exempt_from_layout</span><span class="method-args">(*extensions)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p>
+Don&#8216;t render layouts for templates with the given extensions.
+</p>
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M002532-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M002532-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_view/template.rb, line 104</span>
+104:     <span class="ruby-keyword kw">def</span> <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">exempt_from_layout</span>(<span class="ruby-operator">*</span><span class="ruby-identifier">extensions</span>)
+105:       <span class="ruby-identifier">regexps</span> = <span class="ruby-identifier">extensions</span>.<span class="ruby-identifier">collect</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">extension</span><span class="ruby-operator">|</span>
+106:         <span class="ruby-identifier">extension</span>.<span class="ruby-identifier">is_a?</span>(<span class="ruby-constant">Regexp</span>) <span class="ruby-operator">?</span> <span class="ruby-identifier">extension</span> <span class="ruby-operator">:</span> <span class="ruby-node">/\.#{Regexp.escape(extension.to_s)}$/</span>
+107:       <span class="ruby-keyword kw">end</span>
+108:       <span class="ruby-ivar">@@exempt_from_layout</span>.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">regexps</span>)
+109:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M002533" class="method-detail">
+        <a name="M002533"></a>
+
+        <div class="method-heading">
+          <a href="#M002533" class="method-signature">
+          <span class="method-name">new</span><span class="method-args">(template_path, load_path = nil)</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M002533-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M002533-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_view/template.rb, line 116</span>
+116:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">template_path</span>, <span class="ruby-identifier">load_path</span> = <span class="ruby-keyword kw">nil</span>)
+117:       <span class="ruby-ivar">@template_path</span>, <span class="ruby-ivar">@load_path</span> = <span class="ruby-identifier">template_path</span>.<span class="ruby-identifier">dup</span>, <span class="ruby-identifier">load_path</span>
+118:       <span class="ruby-ivar">@base_path</span>, <span class="ruby-ivar">@name</span>, <span class="ruby-ivar">@locale</span>, <span class="ruby-ivar">@format</span>, <span class="ruby-ivar">@extension</span> = <span class="ruby-identifier">split</span>(<span class="ruby-identifier">template_path</span>)
+119:       <span class="ruby-ivar">@base_path</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">gsub!</span>(<span class="ruby-regexp re">/\/$/</span>, <span class="ruby-value str">''</span>) <span class="ruby-comment cmt"># Push to split method</span>
+120: 
+121:       <span class="ruby-comment cmt"># Extend with partial super powers</span>
+122:       <span class="ruby-identifier">extend</span> <span class="ruby-constant">RenderablePartial</span> <span class="ruby-keyword kw">if</span> <span class="ruby-ivar">@name</span> <span class="ruby-operator">=~</span> <span class="ruby-regexp re">/^_/</span>
+123:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="section-bar">Public Instance methods</h3>
+
+      <div id="method-M002534" class="method-detail">
+        <a name="M002534"></a>
+
+        <div class="method-heading">
+          <a href="#M002534" class="method-signature">
+          <span class="method-name">accessible_paths</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M002534-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M002534-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_view/template.rb, line 125</span>
+125:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">accessible_paths</span>
+126:       <span class="ruby-identifier">paths</span> = []
+127: 
+128:       <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">valid_extension?</span>(<span class="ruby-identifier">extension</span>)
+129:         <span class="ruby-identifier">paths</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">path</span>
+130:         <span class="ruby-identifier">paths</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">path_without_extension</span>
+131:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">multipart?</span>
+132:           <span class="ruby-identifier">formats</span> = <span class="ruby-identifier">format</span>.<span class="ruby-identifier">split</span>(<span class="ruby-value str">&quot;.&quot;</span>)
+133:           <span class="ruby-identifier">paths</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{path_without_format_and_extension}.#{formats.first}&quot;</span>
+134:           <span class="ruby-identifier">paths</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-node">&quot;#{path_without_format_and_extension}.#{formats.second}&quot;</span>
+135:         <span class="ruby-keyword kw">end</span>
+136:       <span class="ruby-keyword kw">else</span>
+137:         <span class="ruby-comment cmt"># template without explicit template handler should only be reachable through its exact path</span>
+138:         <span class="ruby-identifier">paths</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">template_path</span>
+139:       <span class="ruby-keyword kw">end</span>
+140: 
+141:       <span class="ruby-identifier">paths</span>
+142:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M002537" class="method-detail">
+        <a name="M002537"></a>
+
+        <div class="method-heading">
+          <a href="#M002537" class="method-signature">
+          <span class="method-name">content_type</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M002537-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M002537-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_view/template.rb, line 153</span>
+153:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">content_type</span>
+154:       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-value str">'.'</span>, <span class="ruby-value str">'/'</span>)
+155:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M002543" class="method-detail">
+        <a name="M002543"></a>
+
+        <div class="method-heading">
+          <a href="#M002543" class="method-signature">
+          <span class="method-name">exempt_from_layout?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M002543-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M002543-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_view/template.rb, line 184</span>
+184:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">exempt_from_layout?</span>
+185:       <span class="ruby-ivar">@@exempt_from_layout</span>.<span class="ruby-identifier">any?</span> { <span class="ruby-operator">|</span><span class="ruby-identifier">exempted</span><span class="ruby-operator">|</span> <span class="ruby-identifier">path</span> <span class="ruby-operator">=~</span> <span class="ruby-identifier">exempted</span> }
+186:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M002544" class="method-detail">
+        <a name="M002544"></a>
+
+        <div class="method-heading">
+          <a href="#M002544" class="method-signature">
+          <span class="method-name">filename</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M002544-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M002544-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_view/template.rb, line 188</span>
+188:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">filename</span>
+189:       <span class="ruby-comment cmt"># no load_path means this is an &quot;absolute pathed&quot; template</span>
+190:       <span class="ruby-identifier">load_path</span> <span class="ruby-value">? </span><span class="ruby-constant">File</span>.<span class="ruby-identifier">join</span>(<span class="ruby-identifier">load_path</span>, <span class="ruby-identifier">template_path</span>) <span class="ruby-operator">:</span> <span class="ruby-identifier">template_path</span>
+191:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M002535" class="method-detail">
+        <a name="M002535"></a>
+
+        <div class="method-heading">
+          <a href="#M002535" class="method-signature">
+          <span class="method-name">format_and_extension</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M002535-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M002535-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_view/template.rb, line 144</span>
+144:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">format_and_extension</span>
+145:       (<span class="ruby-identifier">extensions</span> = [<span class="ruby-identifier">format</span>, <span class="ruby-identifier">extension</span>].<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">&quot;.&quot;</span>)).<span class="ruby-identifier">blank?</span> <span class="ruby-value">? </span><span class="ruby-keyword kw">nil</span> <span class="ruby-operator">:</span> <span class="ruby-identifier">extensions</span>
+146:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M002548" class="method-detail">
+        <a name="M002548"></a>
+
+        <div class="method-heading">
+          <a href="#M002548" class="method-signature">
+          <span class="method-name">load!</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M002548-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M002548-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_view/template.rb, line 216</span>
+216:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">load!</span>
+217:       <span class="ruby-identifier">freeze</span>
+218:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M002546" class="method-detail">
+        <a name="M002546"></a>
+
+        <div class="method-heading">
+          <a href="#M002546" class="method-signature">
+          <span class="method-name">method_segment</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M002546-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M002546-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_view/template.rb, line 199</span>
+199:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">method_segment</span>
+200:       <span class="ruby-identifier">relative_path</span>.<span class="ruby-identifier">to_s</span>.<span class="ruby-identifier">gsub</span>(<span class="ruby-regexp re">/([^a-zA-Z0-9_])/</span>) { <span class="ruby-identifier">$1</span>.<span class="ruby-identifier">ord</span> }
+201:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M002538" class="method-detail">
+        <a name="M002538"></a>
+
+        <div class="method-heading">
+          <a href="#M002538" class="method-signature">
+          <span class="method-name">mime_type</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M002538-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M002538-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_view/template.rb, line 157</span>
+157:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">mime_type</span>
+158:       <span class="ruby-constant">Mime</span><span class="ruby-operator">::</span><span class="ruby-constant">Type</span>.<span class="ruby-identifier">lookup_by_extension</span>(<span class="ruby-identifier">format</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">format</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-keyword kw">defined?</span>(<span class="ruby-operator">::</span><span class="ruby-constant">Mime</span>)
+159:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M002536" class="method-detail">
+        <a name="M002536"></a>
+
+        <div class="method-heading">
+          <a href="#M002536" class="method-signature">
+          <span class="method-name">multipart?</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M002536-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M002536-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_view/template.rb, line 149</span>
+149:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">multipart?</span>
+150:       <span class="ruby-identifier">format</span> <span class="ruby-operator">&amp;&amp;</span> <span class="ruby-identifier">format</span>.<span class="ruby-identifier">include?</span>(<span class="ruby-value str">'.'</span>)
+151:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M002539" class="method-detail">
+        <a name="M002539"></a>
+
+        <div class="method-heading">
+          <a href="#M002539" class="method-signature">
+          <span class="method-name">path</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M002539-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M002539-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_view/template.rb, line 162</span>
+162:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">path</span>
+163:       [<span class="ruby-identifier">base_path</span>, [<span class="ruby-identifier">name</span>, <span class="ruby-identifier">locale</span>, <span class="ruby-identifier">format</span>, <span class="ruby-identifier">extension</span>].<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">'.'</span>)].<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">'/'</span>)
+164:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M002540" class="method-detail">
+        <a name="M002540"></a>
+
+        <div class="method-heading">
+          <a href="#M002540" class="method-signature">
+          <span class="method-name">path_without_extension</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M002540-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M002540-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_view/template.rb, line 167</span>
+167:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">path_without_extension</span>
+168:       [<span class="ruby-identifier">base_path</span>, [<span class="ruby-identifier">name</span>, <span class="ruby-identifier">locale</span>, <span class="ruby-identifier">format</span>].<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">'.'</span>)].<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">'/'</span>)
+169:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M002541" class="method-detail">
+        <a name="M002541"></a>
+
+        <div class="method-heading">
+          <a href="#M002541" class="method-signature">
+          <span class="method-name">path_without_format_and_extension</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M002541-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M002541-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_view/template.rb, line 172</span>
+172:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">path_without_format_and_extension</span>
+173:       [<span class="ruby-identifier">base_path</span>, [<span class="ruby-identifier">name</span>, <span class="ruby-identifier">locale</span>].<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">'.'</span>)].<span class="ruby-identifier">compact</span>.<span class="ruby-identifier">join</span>(<span class="ruby-value str">'/'</span>)
+174:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M002542" class="method-detail">
+        <a name="M002542"></a>
+
+        <div class="method-heading">
+          <a href="#M002542" class="method-signature">
+          <span class="method-name">relative_path</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M002542-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M002542-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_view/template.rb, line 177</span>
+177:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">relative_path</span>
+178:       <span class="ruby-identifier">path</span> = <span class="ruby-constant">File</span>.<span class="ruby-identifier">expand_path</span>(<span class="ruby-identifier">filename</span>)
+179:       <span class="ruby-identifier">path</span>.<span class="ruby-identifier">sub!</span>(<span class="ruby-node">/^#{Regexp.escape(File.expand_path(RAILS_ROOT))}\//</span>, <span class="ruby-value str">''</span>) <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">defined?</span>(<span class="ruby-constant">RAILS_ROOT</span>)
+180:       <span class="ruby-identifier">path</span>
+181:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M002547" class="method-detail">
+        <a name="M002547"></a>
+
+        <div class="method-heading">
+          <a href="#M002547" class="method-signature">
+          <span class="method-name">render_template</span><span class="method-args">(view, local_assigns = {})</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M002547-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M002547-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_view/template.rb, line 204</span>
+204:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">render_template</span>(<span class="ruby-identifier">view</span>, <span class="ruby-identifier">local_assigns</span> = {})
+205:       <span class="ruby-identifier">render</span>(<span class="ruby-identifier">view</span>, <span class="ruby-identifier">local_assigns</span>)
+206:     <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-identifier">e</span>
+207:       <span class="ruby-identifier">raise</span> <span class="ruby-identifier">e</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">filename</span>
+208:       <span class="ruby-keyword kw">if</span> <span class="ruby-constant">TemplateError</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">e</span>
+209:         <span class="ruby-identifier">e</span>.<span class="ruby-identifier">sub_template_of</span>(<span class="ruby-keyword kw">self</span>)
+210:         <span class="ruby-identifier">raise</span> <span class="ruby-identifier">e</span>
+211:       <span class="ruby-keyword kw">else</span>
+212:         <span class="ruby-identifier">raise</span> <span class="ruby-constant">TemplateError</span>.<span class="ruby-identifier">new</span>(<span class="ruby-keyword kw">self</span>, <span class="ruby-identifier">view</span>.<span class="ruby-identifier">assigns</span>, <span class="ruby-identifier">e</span>)
+213:       <span class="ruby-keyword kw">end</span>
+214:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+      <div id="method-M002545" class="method-detail">
+        <a name="M002545"></a>
+
+        <div class="method-heading">
+          <a href="#M002545" class="method-signature">
+          <span class="method-name">source</span><span class="method-args">()</span>
+          </a>
+        </div>
+      
+        <div class="method-description">
+          <p><a class="source-toggle" href="#"
+            onclick="toggleCode('M002545-source');return false;">[Source]</a></p>
+          <div class="method-source-code" id="M002545-source">
+<pre>
+     <span class="ruby-comment cmt"># File vendor/rails/actionpack/lib/action_view/template.rb, line 194</span>
+194:     <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">source</span>
+195:       <span class="ruby-constant">File</span>.<span class="ruby-identifier">read</span>(<span class="ruby-identifier">filename</span>)
+196:     <span class="ruby-keyword kw">end</span>
+</pre>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+
+  </div>
+
+
+<div id="validator-badges">
+  <p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+</div>
+
+</body>
+</html>
